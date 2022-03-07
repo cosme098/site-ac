@@ -1,26 +1,58 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css';
+import { isAtheticated } from './auth/auth';
+import { jwtInterceptor } from './auth/auth.intercepts';
+import Ac from './pages/Ac/ac';
+import Login from './pages/login';
+import Template from './template/template';
 
-function App() {
+function PrivateRoute({ children }: any) {
+  const auth = isAtheticated();
+  console.log(auth);
+
+  return auth ? children : <Navigate to="/login" />;
+}
+
+function App(): JSX.Element {
+  jwtInterceptor();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={
+          <PrivateRoute>
+            <Template>
+
+            </Template>
+          </PrivateRoute>
+        } />
+        <Route path="/login" element={
+          <Login />
+        } />
+        <Route path="/dashboad" element={
+          <PrivateRoute>
+            <Template>
+
+            </Template>
+          </PrivateRoute>
+        } />
+        <Route path="/Add-Ac" element={
+          <Template>
+            <PrivateRoute>
+              <Ac />
+            </PrivateRoute>
+          </Template>
+        } />
+        <Route path="/Events" element={
+          <Template>
+            <PrivateRoute>
+
+            </PrivateRoute>
+          </Template>
+        } />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
