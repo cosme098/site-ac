@@ -4,13 +4,13 @@ import './App.css';
 import { isAtheticated } from './auth/auth';
 import { jwtInterceptor } from './auth/auth.intercepts';
 import Ac from './pages/Ac/ac';
+import Events from './pages/events/events';
+import Home from './pages/home/home';
 import Login from './pages/login';
 import Template from './template/template';
 
 function PrivateRoute({ children }: any) {
   const auth = isAtheticated();
-  console.log(auth);
-
   return auth ? children : <Navigate to="/login" />;
 }
 
@@ -21,8 +21,8 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={
           <PrivateRoute>
-            <Template>
-
+            <Template key="1" componentName="Dashboad">
+              <Home />
             </Template>
           </PrivateRoute>
         } />
@@ -31,24 +31,24 @@ function App(): JSX.Element {
         } />
         <Route path="/dashboad" element={
           <PrivateRoute>
-            <Template>
-
+            <Template key="2" componentName="Dashboad">
+              <Home />
             </Template>
           </PrivateRoute>
         } />
         <Route path="/Add-Ac" element={
-          <Template>
-            <PrivateRoute>
+          <PrivateRoute>
+            <Template key="3" componentName="Adicionar Novo Ar">
               <Ac />
-            </PrivateRoute>
-          </Template>
+            </Template>
+          </PrivateRoute>
         } />
         <Route path="/Events" element={
-          <Template>
-            <PrivateRoute>
-
-            </PrivateRoute>
-          </Template>
+          <PrivateRoute>
+            <Template key="4" componentName="Eventos">
+              <Events />
+            </Template>
+          </PrivateRoute>
         } />
       </Routes>
     </BrowserRouter>

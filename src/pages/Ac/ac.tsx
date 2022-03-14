@@ -1,6 +1,6 @@
 import { Button, Col, Form, Input, Modal, Row, Select, Space, Switch, Table, Tag, notification, InputNumber } from "antd";
 import Column from "antd/lib/table/Column";
-import React, { useEffect, useState } from "react"
+import React, { Key, useEffect, useState } from "react"
 import styled from "styled-components"
 import { api } from "../../api";
 const Container = styled.div`
@@ -11,7 +11,7 @@ gap: 1rem;
 
 const { Option } = Select;
 
-const Ac = () => {
+const Ac = (props: any, customKey: any, key: Key) => {
 
     const [dataModal, setDataModal] = useState<any>();
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -124,7 +124,7 @@ const Ac = () => {
     }, []);
 
     return (
-        <Container>
+        <Container key={customKey}>
             <Button type="primary" size="large" style={{ width: "fit-content", alignSelf: "end" }} onClick={showModalCreate}>
                 Adicionar
             </Button>
@@ -256,7 +256,7 @@ const Ac = () => {
                                 rules={[{ required: true, message: 'marca!' }]}
                             >
                                 <Select>
-                                    <Option value="SAMSUNG_AC">Samsung</Option>
+                                    <Option value="VESTEL_AC">Samsung</Option>
                                     <Option value="ELECTRA_AC">Elgin</Option>
                                 </Select>
                             </Form.Item>

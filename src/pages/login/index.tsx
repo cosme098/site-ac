@@ -46,11 +46,18 @@ const Login = () => {
     const onFinish = (values: any) => {
         api.post('/login', values).then(res => {
             setTokenAndId(res.data);
+
             notification.open({
                 message: 'Logado com sucesso',
                 type: "success"
             });
             navigate('/dashboad');
+        }, (err) => {
+            console.log(err);
+            notification.open({
+                message: 'Usuario ou senha errados',
+                type: "error"
+            });
         }).catch(err => {
             console.log(err);
             notification.open({
