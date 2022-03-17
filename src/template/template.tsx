@@ -25,8 +25,6 @@ export default function Template(props: any): JSX.Element {
             navigate('/login')
         });
     }
-    console.log(props.children);
-
 
     function toggle() {
         setCollapsed(!collapsed);

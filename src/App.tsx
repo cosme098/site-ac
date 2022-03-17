@@ -13,7 +13,6 @@ function PrivateRoute({ children }: any) {
   const auth = isAtheticated();
   return auth ? children : <Navigate to="/login" />;
 }
-
 function App(): JSX.Element {
   jwtInterceptor();
   return (
@@ -54,5 +53,30 @@ function App(): JSX.Element {
     </BrowserRouter>
   )
 }
-
 export default App;
+
+// function PrivateRoute({ children }: any) {
+//   const auth = isAtheticated();
+//   return auth ? children : <Navigate to="/login" />;
+// }
+
+// function App(): JSX.Element {
+//   jwtInterceptor();
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <PrivateRoute>
+//           <Template key="1" componentName="Dashboad">
+//             <Route path="/" element={<Home />} />
+//             <Route path="/login" element={<Login />} />
+//             <Route path="/dashboad" element={<Home />} />
+//             <Route path="/Add-Ac" element={<Ac />} />
+//             <Route path="/Events" element={<Events />} />
+//           </Template>
+//         </PrivateRoute>
+//       </Routes>
+//     </BrowserRouter>
+//   )
+// }
+
+// export default App;

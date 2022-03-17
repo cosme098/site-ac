@@ -63,19 +63,15 @@ const Events = (customKey: any, key: Key) => {
                 form.resetFields();
 
                 const hour = new Date(values.hour)
-                console.log(hour);
-
-
-
                 const newroutine: Object = {
                     name: values.name,
                     days: values.days,
                     timer: [{ hour: hour.getHours(), minute: hour.getMinutes() }],
                     ars: values.ars,
                     action: values.action,
-                    state: values.state
+                    state: values.state,
+                    timeTurnOff: values.timeTurnOff,
                 };
-
                 api.post('routines/new', newroutine as Array<any>).then(res => {
                     getRoutines();
                     setVisible(false);
@@ -301,8 +297,6 @@ const Events = (customKey: any, key: Key) => {
                                 name="action"
                                 rules={[{ required: true, message: 'Ação da rotina!' }]}>
                                 <Select placeholder="Ação" key="action" onChange={handleChange}>
-                                    <Option value={16} key={22}>16</Option>
-                                    <Option value={17} key={23}>17</Option>
                                     <Option value={18} key={24}>18</Option>
                                     <Option value={19} key={25}>19</Option>
                                     <Option value={20} key={26}>20</Option>
@@ -335,6 +329,13 @@ const Events = (customKey: any, key: Key) => {
                                 name="hour"
                                 rules={[{ required: true, message: 'Hora da rotina!' }]}>
                                 <TimePicker placeholder="Selecione a hora" value={moment('12:08', format)} format={format} />
+                            </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                            <Form.Item
+                                name="timeTurnOff"
+                                rules={[{ required: true, message: 'Hora de fim rotina!' }]}>
+                                <TimePicker placeholder="Fim da rotina" value={moment('12:08', format)} format={format} />
                             </Form.Item>
                         </Col>
                     </Row>
@@ -414,7 +415,6 @@ const Events = (customKey: any, key: Key) => {
                                 name="action"
                                 rules={[{ required: true, message: 'Ação da rotina!' }]}>
                                 <Select placeholder="Ação" key="action" onChange={handleChange}>
-                                    <Option value={0} key={21}>OFF</Option>
                                     <Option value={16} key={22}>16</Option>
                                     <Option value={17} key={23}>17</Option>
                                     <Option value={18} key={24}>18</Option>
@@ -449,6 +449,13 @@ const Events = (customKey: any, key: Key) => {
                                 name="hour"
                                 rules={[{ required: true, message: 'Hora da rotina!' }]}>
                                 <TimePicker placeholder="Selecione a hora" format={format} />
+                            </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                            <Form.Item
+                                name="timeTurnOff"
+                                rules={[{ required: true, message: 'Hora de fim rotina!' }]}>
+                                <TimePicker placeholder="Fim da rotina" value={moment('12:08', format)} format={format} />
                             </Form.Item>
                         </Col>
                     </Row>

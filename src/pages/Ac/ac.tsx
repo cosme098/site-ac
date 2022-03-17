@@ -245,9 +245,22 @@ const Ac = (props: any, customKey: any, key: Key) => {
                         <Col span={8}>
                             <Form.Item
                                 name="degress"
-                                rules={[{ required: true, message: 'Temperatura!' }]}
-                            >
-                                <Input placeholder="Temperatura" />
+                                rules={[{ required: true, message: 'Temperatura' }]}>
+                                <Select placeholder="Ação" key="action">
+                                    <Option value={18} key={24}>18</Option>
+                                    <Option value={19} key={25}>19</Option>
+                                    <Option value={20} key={26}>20</Option>
+                                    <Option value={21} key={27}>21</Option>
+                                    <Option value={22} key={28}>22</Option>
+                                    <Option value={23} key={29}>23</Option>
+                                    <Option value={24} key={30}>24</Option>
+                                    <Option value={25} key={31}>25</Option>
+                                    <Option value={26} key={32}>26</Option>
+                                    <Option value={27} key={33}>27</Option>
+                                    <Option value={28} key={34}>28</Option>
+                                    <Option value={29} key={35}>29</Option>
+                                    <Option value={30} key={36}>29</Option>
+                                </Select>
                             </Form.Item>
                         </Col>
                         <Col span={8}>
@@ -325,11 +338,22 @@ const Ac = (props: any, customKey: any, key: Key) => {
                         <Col span={8}>
                             <Form.Item
                                 name="degress"
-                                rules={[{
-                                    required: true, message: 'Temperatura!',
-                                }]}
-                            >
-                                <Input placeholder="Temperatura" value={dataModal?.degress} />
+                                rules={[{ required: true, message: 'Temperatura' }]}>
+                                <Select placeholder="Ação" key="action">
+                                    <Option value={18} key={24}>18</Option>
+                                    <Option value={19} key={25}>19</Option>
+                                    <Option value={20} key={26}>20</Option>
+                                    <Option value={21} key={27}>21</Option>
+                                    <Option value={22} key={28}>22</Option>
+                                    <Option value={23} key={29}>23</Option>
+                                    <Option value={24} key={30}>24</Option>
+                                    <Option value={25} key={31}>25</Option>
+                                    <Option value={26} key={32}>26</Option>
+                                    <Option value={27} key={33}>27</Option>
+                                    <Option value={28} key={34}>28</Option>
+                                    <Option value={29} key={35}>29</Option>
+                                    <Option value={30} key={36}>29</Option>
+                                </Select>
                             </Form.Item>
                         </Col>
                         <Col span={8}>
