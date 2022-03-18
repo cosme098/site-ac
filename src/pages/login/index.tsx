@@ -44,7 +44,7 @@ const TITLE = styled.p`
 const Login = () => {
     let navigate = useNavigate();
     const onFinish = (values: any) => {
-        api.post('/login', values).then(res => {
+        api.post('/api/login', values).then(res => {
             setTokenAndId(res.data);
 
             notification.open({

@@ -61,7 +61,7 @@ const Ac = (props: any, customKey: any, key: Key) => {
     };
 
     const onFinishCreate = (values: any) => {
-        api.post('/Ac/new', values).then(res => {
+        api.post('/api/Ac/new', values).then(res => {
             notification.open({
                 message: 'Criado com Sucesso',
                 type: "success"
@@ -76,7 +76,7 @@ const Ac = (props: any, customKey: any, key: Key) => {
         });
     };
     const deleteDevice = (data: any) => {
-        api.delete("Ac/delete/" + data._id).then(() => {
+        api.delete("/apiAc/delete/" + data._id).then(() => {
             loadData();
             notification.open({
                 message: 'Deletado com Sucesso',
@@ -93,7 +93,7 @@ const Ac = (props: any, customKey: any, key: Key) => {
     const editDevice = (data: any) => {
         console.log(data);
 
-        api.put("Ac/edit/" + dataModal._id, data).then(() => {
+        api.put("/apiAc/edit/" + dataModal._id, data).then(() => {
             loadData();
             notification.open({
                 message: "Atualizado com sucesso!"
@@ -112,7 +112,7 @@ const Ac = (props: any, customKey: any, key: Key) => {
         console.log('Failed:', errorInfo);
     };
     function loadData() {
-        api.get("/AcGetAll").then((data) => {
+        api.get("/api/AcGetAll").then((data) => {
             setdataSource(data.data);
             setisLoading(false);
         }, (err) => {

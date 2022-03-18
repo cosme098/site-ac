@@ -20,7 +20,7 @@ export default function Home() {
     let acOff;
     let acOn;
     useEffect(() => {
-        api.get('/AcGetAll').then((res: any) => {
+        api.get('/api/AcGetAll').then((res: any) => {
             setOn(res.data.filter((item: any) => item.power === 1));
             setOff(res.data.filter((item: any) => item.power === 0));
         })

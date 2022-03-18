@@ -35,7 +35,7 @@ const Events = (customKey: any, key: Key) => {
         setVisible(false);
     };
     const getRoutines = async () => {
-        await api.get("/routinesAll").then(res => {
+        await api.get("/api/routinesAll").then(res => {
             setdataSource(res.data);
             console.log(res.data);
 
@@ -72,7 +72,7 @@ const Events = (customKey: any, key: Key) => {
                     state: values.state,
                     timeTurnOff: values.timeTurnOff,
                 };
-                api.post('routines/new', newroutine as Array<any>).then(res => {
+                api.post('/apiroutines/new', newroutine as Array<any>).then(res => {
                     getRoutines();
                     setVisible(false);
                     notification.open({
@@ -92,7 +92,7 @@ const Events = (customKey: any, key: Key) => {
     }
 
     const deleteRoutine = (routine: any) => {
-        api.delete(`routines/delete/${routine._id}/${routine.name}`).then(res => {
+        api.delete(`/apiroutines/delete/${routine._id}/${routine.name}`).then(res => {
             getRoutines();
             notification.open({
                 message: 'Rotina deletada',
@@ -133,7 +133,7 @@ const Events = (customKey: any, key: Key) => {
                 _id: currentId
             };
 
-            api.put('routines/update', newroutine as Array<any>).then(res => {
+            api.put('/apiroutines/update', newroutine as Array<any>).then(res => {
                 getRoutines();
                 setVisibleEdit(false);
                 notification.open({
