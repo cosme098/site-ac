@@ -286,7 +286,7 @@ const Events = (customKey: any, key: Key) => {
                                 >
                                     {
                                         ars?.map((data: any) => {
-                                            return (<Option value={data._id} key={data.name}>{data.name}</Option>)
+                                            return (<Option value={data._id} key={data.name}>{data.localization + ":" + data.name}</Option>)
                                         })
                                     }
                                 </Select>
@@ -404,7 +404,7 @@ const Events = (customKey: any, key: Key) => {
                                 >
                                     {
                                         ars?.map((data: any) => {
-                                            return (<Option value={data._id} key={data.name}>{data.name}</Option>)
+                                            return (<Option value={data._id} key={data.localization + ":" + data.name}>{data.localization + ":" + data.name}</Option>)
                                         })
                                     }
                                 </Select>

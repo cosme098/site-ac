@@ -18,7 +18,8 @@ const Ac = (props: any, customKey: any, key: Key) => {
     const [isModalVisibleCreate, setIsModalVisibleCreate] = useState(false);
     const [isLoading, setisLoading] = useState<boolean>(true);
     const [dataSource, setdataSource] = useState<Array<any>>([]);
-
+    const [dataSourceSearch, setdataSourceSearch] = useState<Array<any>>([]);
+    const [findBar, setFindBar] = useState<string>("");
     const [form] = Form.useForm();
     const [formEdit] = Form.useForm();
 
@@ -76,7 +77,7 @@ const Ac = (props: any, customKey: any, key: Key) => {
         });
     };
     const deleteDevice = (data: any) => {
-        api.delete("/apiAc/delete/" + data._id).then(() => {
+        api.delete("/api/Ac/delete/" + data._id).then(() => {
             loadData();
             notification.open({
                 message: 'Deletado com Sucesso',
@@ -93,7 +94,7 @@ const Ac = (props: any, customKey: any, key: Key) => {
     const editDevice = (data: any) => {
         console.log(data);
 
-        api.put("/apiAc/edit/" + dataModal._id, data).then(() => {
+        api.put("/api/Ac/edit/" + dataModal._id, data).then(() => {
             loadData();
             notification.open({
                 message: "Atualizado com sucesso!"
@@ -107,6 +108,16 @@ const Ac = (props: any, customKey: any, key: Key) => {
             })
         })
     }
+    const findDevice = (mac: any): void => {
+        if (mac) {
+            let te = dataSource.filter(item => item.mac.startsWith(mac));
+            console.log(te);
+            setdataSourceSearch(te);
+        } else {
+            console.log("sem nada");
+            setdataSourceSearch(dataSource);
+        }
+    }
 
     const onFinishFailedCreate = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
@@ -114,6 +125,7 @@ const Ac = (props: any, customKey: any, key: Key) => {
     function loadData() {
         api.get("/api/AcGetAll").then((data) => {
             setdataSource(data.data);
+            setdataSourceSearch(data.data);
             setisLoading(false);
         }, (err) => {
             console.log(err);
@@ -125,10 +137,11 @@ const Ac = (props: any, customKey: any, key: Key) => {
 
     return (
         <Container key={customKey}>
+            <Input placeholder="Mac" onChange={(e) => findDevice(e.target.value)} />
             <Button type="primary" size="large" style={{ width: "fit-content", alignSelf: "end" }} onClick={showModalCreate}>
                 Adicionar
             </Button>
-            <Table dataSource={dataSource} loading={isLoading}>
+            <Table dataSource={dataSourceSearch} loading={isLoading}>
                 <Column
                     title="id"
                     dataIndex="firstName"
@@ -370,7 +383,7 @@ const Ac = (props: any, customKey: any, key: Key) => {
                         <Col span={8}>
                             <Form.Item
                                 name="power"
-                                rules={[{ required: true, message: 'Estado atual!' }]}
+                                rules={[{ message: 'Estado atual!' }]}
                             >
                                 <Switch checkedChildren="ON" unCheckedChildren="OFF" defaultChecked={dataModal?.power} />
                             </Form.Item>

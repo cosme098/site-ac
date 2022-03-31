@@ -46,7 +46,7 @@ const Login = () => {
     const onFinish = (values: any) => {
         api.post('/api/login', values).then(res => {
             setTokenAndId(res.data);
-
+            console.log(res.data);
             notification.open({
                 message: 'Logado com sucesso',
                 type: "success"
